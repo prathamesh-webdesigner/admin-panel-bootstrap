@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+:root {
+  --logoStartColor: #a92266;
+  --themeEndColor: #e65325;
+  --coinYellowColor: #f0c613;
+}
+
+body,
+button {
+  font-family: "Inter", sans-serif;
+}
+:root {
+  --offcanvas-width: 270px;
+  --topNavbarHeight: 56px;
+}
+.sidebar-nav {
+  width: var(--offcanvas-width);
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+}
+.sidebar-link .right-icon {
+  display: inline-flex;
+}
+.sidebar-link[aria-expanded="true"] .right-icon {
+  transform: rotate(180deg);
+}
+/* new css  */
+.submit_button_for_header{
+  background-color: var(--themeEndColor);
+  opacity: 0.6;
+}
+.User_Reports_snapshot{
+  /* background-color: var(--logoStartColor); */
+  background-color: #a9226690;
+}
+.Reports_snapshot{
+  /* background-color: var(--themeEndColor); */
+  background-color: #e6532590;
+}
+.top_header_menu{
+  z-index: 9999;
+}
+.card-footer span i{
+  color: var(--coinYellowColor);
+}
+.sidebar_icons{
+  color: var(--themeEndColor);
+}
+.by_web_text small {
+  font-size: 12px;
+}
+.operation_icons{
+  height: 33px;
+  width: 16%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin-right: 10px;
+}
+.cardTocard {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+.first_opration{
+  display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.first_opration_text small, .chrome_browser small {
+  font-size: 14px;
+}
+.first_opration_text span {
+  font-size: 12px;
+}
+.footer_title {
+  height: 50px;
+}
+.footer_title h6 {
+  font-size: 14px;
+  margin-right: 10px !important;
+}
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+  main {
+    margin-left: var(--offcanvas-width);
+  }
+  /* this is to remove the backdrop */
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+  .sidebar-nav {
+    -webkit-transform: none;
+    transform: none;
+    visibility: visible !important;
+    height: calc(100% - var(--topNavbarHeight));
+    top: var(--topNavbarHeight);
+  }
+}

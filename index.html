@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
+  <link rel="stylesheet" href="css/solid.min.css" />
+  <link rel="stylesheet" href="css/regular.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+
+  <!-- <script src="./js/fontawesome.min.js"></script> -->
+  <link rel="stylesheet" href="css/style.css" />
+  <title>Admin Dashboard JadaPaisa</title>
+</head>
+
+<body style="overflow-x: hidden !important;">
+  <!-- top navigation bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow top_header_menu">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+        aria-controls="offcanvasExample">
+        <span class="navbar-toggler-icon" data-bs-target="#sidebar"></span>
+      </button>
+      <a class="navbar-brand me-auto ms-lg-0 ms-3 text-uppercase fw-bold" href="#"><img src="images/JadaPaisaa_logo.png"
+          alt="jadapaisa Logo" class="w-50"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavBar"
+        aria-controls="topNavBar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="topNavBar">
+        <form class="d-flex ms-auto my-3 my-lg-0">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn text-white submit_button_for_header" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
+        </form>
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle ms-2" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-person-fill"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- top navigation bar -->
+  <!-- offcanvas -->
+  <div class="offcanvas offcanvas-start sidebar-nav bg-light mt-4 shadow" tabindex="-1" id="sidebar">
+    <div class="offcanvas-body p-0">
+      <nav class="navbar-dark mt-4">
+        <ul class="navbar-nav">
+          <li>
+            <div class="text-muted small fw-bold text-uppercase px-3">
+              CORE
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-secondary px-3 active">
+              <span class="me-2 sidebar_icons"><i class="bi bi-speedometer2"></i></span>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="my-4">
+            <hr class="dropdown-divider bg-dark" />
+          </li>
+          <li>
+            <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+              Interface
+            </div>
+          </li>
+          <li>
+            <a class="nav-link text-secondary px-3 sidebar-link" data-bs-toggle="collapse" href="#layouts">
+              <span class="me-2 sidebar_icons"><i class="bi bi-layout-split"></i></span>
+              <span>Layouts</span>
+              <span class="ms-auto">
+                <span class="right-icon">
+                  <i class="bi bi-chevron-down"></i>
+                </span>
+              </span>
+            </a>
+            <div class="collapse" id="layouts">
+              <ul class="navbar-nav ps-3">
+                <li>
+                  <a href="#" class="nav-link text-secondary px-3">
+                    <span class="me-2 sidebar_icons"><i class="bi bi-speedometer2"></i></span>
+                    <span>Dashboard</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-secondary px-3">
+              <span class="me-2 sidebar_icons"><i class="bi bi-book-fill"></i></span>
+              <span>Pages</span>
+            </a>
+          </li>
+          <li class="my-4">
+            <hr class="dropdown-divider bg-dark" />
+          </li>
+          <li>
+            <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
+              Addons
+            </div>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-secondary px-3">
+              <span class="me-2 sidebar_icons"><i class="bi bi-graph-up"></i></span>
+              <span>Charts</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-secondary px-3">
+              <span class="me-2 sidebar_icons"><i class="bi bi-table"></i></span>
+              <span>Tables</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <!-- offcanvas -->
+  <main class="mt-5 pt-3">
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-between mb-2">
+          <h4>Admin Dashboard</h4>
+          <button class="btn btn-primary">Refresh</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 border p-4 mb-4 User_Reports_snapshot rounded">
+          <div class="row">
+            <h2 class="text-center mb-3 text-white">User Reports</h2>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>240</h4>
+                </div>
+                <div class="card-footer footer_title d-flex bg-dark text-white align-items-center">
+                  <h6 class="m-0">Users Registered</h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-users"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>400</h4>
+                </div>
+                <div class="card-footer footer_title d-flex bg-dark text-white align-items-center">
+                  <h6 class="m-0">
+                    No. Of Locations Site Opened
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>200</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Total Visitors
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-user-plus"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>120</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Targeted Industries
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-industry"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>1000</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Total Cash Distributed
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="far fa-money-bill-alt"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>50</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    User Locations
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-street-view"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 border p-4 mb-4 Reports_snapshot rounded">
+          <div class="row">
+            <h2 class="text-center mb-3 text-white">Reports</h2>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center text-center">
+                  <h4>1800</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Total Coins Distributed
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-coins"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>150</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Redeemed Offers
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-bahai"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>2000</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Total Polls Answered
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-poll"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>240</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Categories
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-cubes"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>01</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Country
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-flag"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 px-1">
+              <div class="card bg-light text-dark h-100">
+                <div class="card-body py-5 text-center">
+                  <h4>210</h4>
+                </div>
+                <div class="card-footer d-flex bg-dark text-white footer_title align-items-center">
+                  <h6 class="m-0">
+                    Rewards Distributed
+                  </h6>
+                  <span class="ms-auto">
+                    <i class="fas fa-gift"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
+    </div>
+    <!-- ------- new section  -->
+    <section class="bg-light py-5">
+      <div class="row">
+        <div class="col-md-4 bg-white">
+          <div class="amt_lead_source bg-white p-3 rounded">
+            <p><b>Platform Status</b></p>
+            <div class="bar_by_web text-info mb-3">
+              <div class="by_web_text d-flex justify-content-between">
+                <small><b>Web Users</b></small>
+                <small><b>64%</b></small>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 64%;" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="bar_by_web text-danger mb-3">
+              <div class="by_web_text d-flex justify-content-between">
+                <small><b>App Users</b></small>
+                <small><b>23%</b></small>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 23%;" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="bar_by_web text-warning mb-3">
+              <div class="by_web_text d-flex justify-content-between">
+                <small><b>App Downloaded</b></small>
+                <small><b>44%</b></small>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 44%;" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="bar_by_web text-success mb-3">
+              <div class="by_web_text d-flex justify-content-between">
+                <small><b>App Shared</b></small>
+                <small><b>79%</b></small>
+              </div>
+              <div class="progress">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 79%;" aria-valuenow="25"
+                  aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-5 bg-white">
+          <div class="amt_lead_source bg-white p-3 rounded">
+            <p><b>Transaction Operations</b></p>
+            <div class="first_opration mb-3 p-2 shadow rounded">
+              <div class="cardTocard">
+                <div class="operation_icons bg-info rounded">
+                  <i class="far fa-credit-card"></i>
+                </div>
+                <div class="first_opration_text d-flex flex-column">
+                  <small><b>Transfer from wallet to card</b></small>
+                  <span class="text-muted">Yesterday 2:23pm</span>
+                </div>
+              </div>
+              <div>
+                <b>&#8377; 1000</b>
+              </div>
+            </div>
+
+            <div class="first_opration mb-3 p-2 shadow rounded">
+              <div class="cardTocard">
+                <div class="operation_icons bg-danger rounded">
+                  <i class="fab fa-google-pay"></i>
+                </div>
+                <div class="first_opration_text d-flex flex-column">
+                  <small><b>UPI Payment</b></small>
+                  <span class="text-muted">Yesterday 11:15am</span>
+                </div>
+              </div>
+              <div class="text-danger">
+                <b>&#8377; 5000</b>
+              </div>
+            </div>
+
+            <div class="first_opration mb-3 p-2 shadow rounded">
+              <div class="cardTocard">
+                <div class="operation_icons bg-success rounded">
+                  <i class="fas fa-university"></i>
+                </div>
+                <div class="first_opration_text d-flex flex-column">
+                  <small><b>Bank Transfer</b></small>
+                  <span class="text-muted">Yesterday 3:15pm</span>
+                </div>
+              </div>
+              <div class="text-success">
+                <b>&#8377; 3000</b>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-3 bg-white">
+          <div class="amt_lead_source bg-white p-3 rounded">
+            <p><b>Browser Status</b></p>
+            <div class="Browser_Status mb-3">
+              <div class="chrome_browser d-flex justify-content-between">
+                <small>Google Chrome</small>
+                <span class="badge bg-info text-dark text-white">54%</span>
+              </div>
+              <hr>
+              <div class="chrome_browser d-flex justify-content-between">
+                <small>Mozilla Firefox</small>
+                <span class="badge bg-danger text-dark text-white">20%</span>
+              </div>
+              <hr>
+              <div class="chrome_browser d-flex justify-content-between">
+                <small>Apple Safari</small>
+                <span class="badge bg-warning text-dark text-white">15%</span>
+              </div>
+              <hr>
+              <div class="chrome_browser d-flex justify-content-between">
+                <small>Internet Explorer</small>
+                <span class="badge bg-success text-dark text-white">18%</span>
+              </div>
+              <hr>
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ------- new section  //-->
+    <!-- charts  -->
+
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card h-100">
+          <div class="card-header">
+            <span class="me-2 sidebar_icons"><i class="bi bi-bar-chart-fill"></i></span>
+            Monthly User Chart
+          </div>
+          <div class="card-body">
+            <canvas class="chart" width="400" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="card h-100">
+          <div class="card-header">
+            <span class="me-2 sidebar_icons"><i class="bi bi-bar-chart-fill"></i></span>
+            Yearly User Chart
+          </div>
+          <div class="card-body">
+            <canvas class="chart" width="400" height="200"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-md-12 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <span><i class="bi bi-table me-2 sidebar_icons"></i></span> API Analytics Data
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="table table-striped data-table" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>API Name</th>
+                    <th>No. Of Times Called</th>
+                    <th>Success</th>
+                    <th>Fail</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ageing</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Areas</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Categories</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>City</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Conversion</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Country</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Pointing To</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Poll Results</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Polls</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Reward Master</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>State</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>SubCategories</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Targeted Industries</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Transaction</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>User Conversion</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>User Rewards</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>User Category Subs</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Users</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Quiz Question Step 2</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Quiz Creation Topics Step 1</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Quiz Results</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                  <tr>
+                    <td>Sites</td>
+                    <td>20</td>
+                    <td>5</td>
+                    <td>25</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>API Name</th>
+                    <th>No. Of Times Called</th>
+                    <th>Success</th>
+                    <th>Fail</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    </div>
+  </main>
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
+  <script src="./js/jquery-3.5.1.js"></script>
+  <script src="./js/jquery.dataTables.min.js"></script>
+  <script src="./js/dataTables.bootstrap5.min.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+
+</html>
